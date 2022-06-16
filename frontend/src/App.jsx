@@ -1,14 +1,17 @@
-import SummaryForm from "./pages/summary/SummaryForm";
-import "./App.css";
-import Options from "./pages/entry/Options";
+import Container from "react-bootstrap/Container";
+import OrderEntry from "./pages/entry/OrderEntry";
+import { OrderDetailsProvider } from "./context/OrderDetails";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Options />
-      <SummaryForm />
-    </div>
+    <Container>
+      <OrderDetailsProvider>
+        {/* summary page and entry page need provider */}
+        <OrderEntry />
+      </OrderDetailsProvider>
+      {/* conformational page does not need provider */}
+    </Container>
   );
-}
+};
 
 export default App;
