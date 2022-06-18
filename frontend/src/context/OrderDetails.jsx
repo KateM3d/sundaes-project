@@ -10,7 +10,6 @@ const formatCurrency = (amount) => {
   }).format(amount);
 };
 
-// @ts-ignore
 const OrderDetails = createContext();
 
 // create custom hook to check whether we're inside a provider
@@ -59,8 +58,9 @@ export const OrderDetailsProvider = (props) => {
     });
   }, [optionCounts]);
 
+  //to keep the value from being recalcuated when it doesn't need to
   const value = useMemo(() => {
-    function updateItemCount(itemName, newItemCount, optionType) {
+    const updateItemCount = (itemName, newItemCount, optionType) => {
       const newOptionCounts = { ...optionCounts };
 
       // update option count for this item with the new value
@@ -68,14 +68,14 @@ export const OrderDetailsProvider = (props) => {
       optionCountsMap.set(itemName, parseInt(newItemCount));
 
       setOptionCounts(newOptionCounts);
-    }
+    };
 
-    function resetOrder() {
+    const resetOrder = () => {
       setOptionCounts({
         scoops: new Map(),
         toppings: new Map(),
       });
-    }
+    };
     // getter: object containing option counts for scoops and toppings, subtotals and totals
     // setter: updateOptionCount
     return [{ ...optionCounts, totals }, updateItemCount, resetOrder];
