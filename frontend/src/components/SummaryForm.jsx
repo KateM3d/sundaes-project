@@ -4,8 +4,16 @@ import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
-export default function SummaryForm() {
+const SummaryForm = ({ setOrderPhase }) => {
   const [tcChecked, setTcChecked] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // pass along to the next phase.
+    // The next page will handle submitting order from context.
+    setOrderPhase("completed");
+  };
 
   const popover = (
     <Popover id="popover-basic">
@@ -14,7 +22,7 @@ export default function SummaryForm() {
   );
 
   const checkboxLabel = (
-    <span>
+    <span style={{ color: "#4C3A51" }}>
       I agree to
       <OverlayTrigger placement="right" overlay={popover}>
         <span style={{ color: "blue" }}> Terms and Conditions</span>
@@ -23,7 +31,7 @@ export default function SummaryForm() {
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId="terms-and-conditions">
         <Form.Check
           type="checkbox"
@@ -32,9 +40,15 @@ export default function SummaryForm() {
           label={checkboxLabel}
         />
       </Form.Group>
-      <Button variant="success" type="submit" disabled={!tcChecked}>
+      <Button
+        style={{ marginTop: "3%" }}
+        variant="success"
+        type="submit"
+        disabled={!tcChecked}
+      >
         Confirm order
       </Button>
     </Form>
   );
-}
+};
+export default SummaryForm;

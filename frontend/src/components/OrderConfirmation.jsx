@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
-import { useOrderDetails } from "../../context/OrderDetails";
-import AlertBanner from "../common/AlertBanner";
+import { useOrderDetails } from "../context/OrderDetails";
+import AlertBanner from "./AlertBanner";
 
-export const OrderConfirmation = ({ setOrderPhase }) => {
+const OrderConfirmation = ({ setOrderPhase }) => {
   const [, , resetOrder] = useOrderDetails();
   const [orderNumber, setOrderNumber] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     axios
-      // and send with POST
       .post(`http://localhost:3030/order`)
       .then((response) => {
         setOrderNumber(response.data.orderNumber);
@@ -33,16 +32,21 @@ export const OrderConfirmation = ({ setOrderPhase }) => {
 
   if (orderNumber) {
     return (
-      <div style={{ textAlign: "center" }}>
+      <div style={{ color: "#4C3A51", textAlign: "center", marginTop: "10%" }}>
         <h1>Thank You!</h1>
         <p>Your order number is {orderNumber}</p>
-        <p style={{ fontSize: "25%" }}>
-          as per our terms and conditions, nothing will happen now
+        <p style={{ fontSize: "10px" }}>
+          Thank you for using this form, no actual ice-cream will be delivered
+          per our terms and conditions
         </p>
-        <Button onClick={handleClick}>Create new order</Button>
+        <Button variant="success" onClick={handleClick}>
+          Create new order
+        </Button>
       </div>
     );
   } else {
     return <div>Loading</div>;
   }
 };
+
+export default OrderConfirmation;

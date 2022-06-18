@@ -32,9 +32,13 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
       <Form.Group
         controlId={`${name}-count`}
         as={Row}
-        style={{ marginTop: "10px" }}
+        style={{ margin: "10px" }}
       >
-        <Form.Label column xs="6" style={{ textAlign: "right" }}>
+        <Form.Label
+          column
+          xs="6"
+          style={{ textAlign: "right", color: "#1B2430" }}
+        >
           {name}
         </Form.Label>
         <Col xs="5" style={{ textAlign: "left" }}>

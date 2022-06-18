@@ -1,15 +1,15 @@
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
-import { OrderConfirmation } from "./pages/confirmation/OrderConfirmation";
-import OrderEntry from "./pages/entry/OrderEntry";
-import OrderSummary from "./pages/summary/OrderSummary";
+import OrderConfirmation from "./components/OrderConfirmation";
+import OrderEntry from "./components/OrderEntry";
+import OrderSummary from "./components/OrderSummary";
 import { OrderDetailsProvider } from "./context/OrderDetails";
 
 export default function App() {
   // orderPhase needs to be 'inProgress', 'review' or 'completed'
   const [orderPhase, setOrderPhase] = useState("inProgress");
 
-  let Component = OrderEntry; // default to order page
+  let Component = OrderEntry;
   switch (orderPhase) {
     case "inProgress":
       Component = OrderEntry;

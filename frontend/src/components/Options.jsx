@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
-import { pricePerItem } from "../../constants";
-import AlertBanner from "../common/AlertBanner";
+import { pricePerItem } from "../constants";
+import AlertBanner from "./AlertBanner";
 import ScoopOption from "./ScoopOption";
 import ToppingOption from "./ToppingOption";
-import { useOrderDetails } from "../../context/OrderDetails";
-import { formatCurrency } from "../../utils";
+import { useOrderDetails } from "../context/OrderDetails";
+import { formatCurrency } from "../utils";
 
 export default function Options({ optionType }) {
   const [items, setItems] = useState([]);
@@ -43,9 +43,13 @@ export default function Options({ optionType }) {
 
   return (
     <>
-      <h2>{title}</h2>
-      <p>{formatCurrency(pricePerItem[optionType])} each</p>
-      <p>
+      <h2 style={{ color: "#4C3A51", textAlign: "center", margin: "3%" }}>
+        {title}
+      </h2>
+      <p style={{ color: "#4C3A51", textAlign: "center" }}>
+        {formatCurrency(pricePerItem[optionType])} each
+      </p>
+      <p style={{ color: "#4C3A51", textAlign: "center", marginBottom: "5%" }}>
         {title} total: {orderDetails.totals[optionType]}
       </p>
       <Row>{optionItems}</Row>
