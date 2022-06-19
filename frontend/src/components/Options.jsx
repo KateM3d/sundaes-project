@@ -16,7 +16,7 @@ export default function Options({ optionType }) {
   // optionType is 'scoops' or 'toppings'
   useEffect(() => {
     axios
-      .get(`https://sundae-server-app.herokuapp.com/${optionType}`)
+      .get(`http://localhost:3030/${optionType}`)
       .then((response) => setItems(response.data))
       .catch((error) => {
         setError(true);

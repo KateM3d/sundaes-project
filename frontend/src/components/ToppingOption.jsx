@@ -18,7 +18,7 @@ export default function ToppingOption({ name, imagePath, updateItemCount }) {
     >
       <img
         style={{ width: "75%", height: "80%", marginBottom: "5%" }}
-        src={`https://sundae-server-app.herokuapp.com/${imagePath}`}
+        src={`http://localhost:3030/${imagePath}`}
         alt={`${name} topping`}
       />
       <Form.Group controlId={`${name}-topping-checkbox`}>

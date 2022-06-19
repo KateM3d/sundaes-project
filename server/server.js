@@ -16,7 +16,10 @@ app.use(
 app.use(express.static("public"));
 
 // read data from options file
-const sundaeOptionsRaw = fs.readFileSync("./sundae-options.json", "utf-8");
+const sundaeOptionsRaw = fs.readFileSync(
+    "./public/sundae-options.json",
+    "utf-8"
+);
 const sundaeOptions = JSON.parse(sundaeOptionsRaw);
 
 app.get("/scoops", (req, res) => {
